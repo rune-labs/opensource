@@ -11,7 +11,7 @@ MEDTRONIC_EPOCH = 951868800   # 2000-03-01 00:00:00 UTC
 SYSTEM_TICK_CLOCK = (1 << 16)
 SYSTEM_TICK_DURATION = 0.0001
 V_UNIT_SCALE = {
-    megavolts:  10000000
+    megavolts:  1000000
     kilovolts:  1000
     volts:      1
     millivolts: 0.001
