@@ -47,7 +47,7 @@ for packet in record["TimeDomainData"]
         sampling_period = 1.0 / sampling_freq
         ticks_per_point = sampling_period / SYSTEM_TICK_DURATION
 
-    if t_chunk_start == None or medtronic_timestamp - medtronic_timestamp_prev >= 5
+    if t_chunk_start == None or abs(medtronic_timestamp - medtronic_timestamp_prev) >= 5
         #
         # Too much drift for system tick clock, need to re-sync from MDT
         # timestamp
@@ -75,7 +75,7 @@ for packet in record["TimeDomainData"]
         t = t_chunk_start + (tick * SYSTEM_TICK_DURATION)
 
         for i_channel in 0..4
-            v = channels[i_channel]["Value"][i_point]
+            v = channels[i_channel]["Value"][i_point] * v_coef
 
             # Output the point to wherever it's stored/used next
             yield (t, i_channel, v)
