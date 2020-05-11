@@ -37,7 +37,7 @@ xcode-select --install
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
 ```
 
-* Lastly, install Python 3 using the Terminal command:
+* Install Python 3 using the Terminal command:
 
 ```
 brew install python
@@ -45,6 +45,16 @@ brew install python
 
 * Once you have Python 3, install Anaconda using either the graphical installer or the command line installer: https://www.anaconda.com/distribution/.
 
+* To install our Python SDK `runeq`, which simplifies use of our API:
+```
+pip install --upgrade pip
+pip install runeq
+```
+* In order to use our Graph API, you will also need the gql package, which is not included in the Anaconda distribution. 
+
+```
+conda install -c conda-forge gql
+```
 
 ## Setting up a Virtual Environment
 
