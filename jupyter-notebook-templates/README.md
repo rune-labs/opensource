@@ -19,35 +19,35 @@ walks through a simple example of pulling raw time series and spectrograms and s
 * [02_download_watch_data](./02_download_watch_data.ipynb) 
 provides functions for downloading accelerometry, rotation, tremor probability, and dyskinesia probability from the Apple Watch.
 
-* [03_advanced_neural_data_selection](03_advanced_neural_data_selection.ipynb) 
-uses meta data such as stimulation, sensing, and adaptive parameters for advanced neural data querying.
-
-* [04_find_neural_and_watch_data](04_find_neural_and_watch_data.ipynb) 
+* [03_find_neural_and_watch_data](03_find_neural_and_watch_data.ipynb) 
 highlights ways to find where there are concurrent neural and watch data.
+
+* [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb) 
+uses meta data such as stimulation, sensing, and adaptive parameters for advanced neural data querying.
 
 * [05_check_data_gaps](05_check_data_gaps.ipynb) 
 filters data to remove epochs with non-continuous time stamps and to remove epochs that are too short in duration.
 
 ## Appendix of Functions
-Here is a list of all functions and where to find them in the notebooks.
+Here is a list of major functions and where to find them in the notebooks.
 
 **Function** | **Notebook**
 --- | --- 
-`check_accel_data_availability` | [04_find_neural_and_watch_data](04_find_neural_and_watch_data.ipynb) 
+`check_accel_data_availability` | [03_find_neural_and_watch_data](03_find_neural_and_watch_data.ipynb) 
 `check_gaps` | [05_check_data_gaps](05_check_data_gaps.ipynb)
 `check_duration` | [05_check_data_gaps](05_check_data_gaps.ipynb)
-`check_neural_data_availability` | [04_find_neural_and_watch_data 4](04_find_neural_and_watch_data.ipynb)
+`check_neural_data_availability` | [03_find_neural_and_watch_data](03_find_neural_and_watch_data.ipynb) 
 `check_sampling_rate` | [05_check_data_gaps](05_check_data_gaps.ipynb)
-`filter_by_epoch_duration` | [03_advanced_neural_data_selection](03_advanced_neural_data_selection.ipynb)
-`find_epochs` | [03_advanced_neural_data_selection](03_advanced_neural_data_selection.ipynb)
-`find_overlapping_epochs` | [03_advanced_neural_data_selection](03_advanced_neural_data_selection.ipynb)
+`filter_by_epoch_duration` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
+`find_epochs` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
+`find_overlapping_epochs` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_accel` | [02_download_watch_data](02_download_watch_data.ipynb)
-`get_adaptive_meta_data` | [03_advanced_neural_data_selection](03_advanced_neural_data_selection.ipynb)
+`get_adaptive_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_dyskinesia` | [02_download_watch_data](02_download_watch_data.ipynb)
 `get_neural_time_series` | [01_download_neural_data](01_download_neural_data.ipynb)
 `get_rotation` | [02_download_watch_data](02_download_watch_data.ipynb)
-`get_sensing_meta_data` | [03_advanced_neural_data_selection](03_advanced_neural_data_selection.ipynb)
+`get_sensing_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_spectrogram` | [01_download_neural_data](01_download_neural_data.ipynb)
-`get_stimulation_meta_data` | [03_advanced_neural_data_selection](03_advanced_neural_data_selection.ipynb)
+`get_stimulation_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_tremor` | [02_download_watch_data](02_download_watch_data.ipynb)
-`plot_epochs` | [03_advanced_neural_data_selection](03_advanced_neural_data_selection.ipynb)
+`plot_epochs` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
