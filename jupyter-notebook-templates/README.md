@@ -2,10 +2,8 @@
 
 Here are some introductory materials to access and manipulate data using Rune's APIs.
 
-## Rune's APIs
-Rune has 2 APIs for data access. 
-1. The **Stream API** allows you to pull time series data, including RC+S and Apple Watch signals. Full documentation for this API can be found [here](https://docs.runelabs.io/).  Our Python package `runeq` enables streamlined use of this API. Documentation for our Python SDK can be found [here](https://runeq.readthedocs.io/en/latest/).
-2. The **Graph API** returns information about recording sessions. 
+## Rune's Stream API
+The **Stream API** allows you to pull time series data, including RC+S and Apple Watch signals. Full documentation for this API can be found [here](https://docs.runelabs.io/).  Our Python package `runeq` enables streamlined use of this API. Documentation for our Python SDK can be found [here](https://runeq.readthedocs.io/en/latest/).
 
 ## Overview
 First, set up your analysis environment in Python. Then, download/clone this repository and load up the .ipynb files in Jupyter Notebook. 
@@ -28,6 +26,9 @@ uses meta data such as stimulation, sensing, and adaptive parameters for advance
 * [05_check_data_gaps](05_check_data_gaps.ipynb) 
 filters data to remove epochs with non-continuous time stamps and to remove epochs that are too short in duration.
 
+* [06_inspect_rcs_data_quality](06_inspect_rcs_data_quality.ipynb) 
+uses session meta data to quantify and visualize data quality.
+
 ## Appendix of Functions
 Here is a list of major functions and where to find them in the notebooks.
 
@@ -47,6 +48,7 @@ Here is a list of major functions and where to find them in the notebooks.
 `get_neural_time_series` | [01_download_neural_data](01_download_neural_data.ipynb)
 `get_rotation` | [02_download_watch_data](02_download_watch_data.ipynb)
 `get_sensing_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
+`get_session_events` | [06_inspect_rcs_data_quality](06_inspect_rcs_data_quality.ipynb)
 `get_spectrogram` | [01_download_neural_data](01_download_neural_data.ipynb)
 `get_stimulation_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_tremor` | [02_download_watch_data](02_download_watch_data.ipynb)
