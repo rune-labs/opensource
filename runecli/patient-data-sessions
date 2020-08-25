@@ -1,0 +1,259 @@
+#!/usr/bin/env python
+"""
+Rune Labs - Patient Data Session Downloader
+
+"""
+import argparse
+from datetime import datetime
+import os
+import sys
+from time import time
+
+try:
+    from gql import gql, Client
+    from gql.transport.requests import RequestsHTTPTransport
+except ImportError:
+    print("ERROR: Python module 'gql' not found. "
+          "Install with 'pip install gql'")
+    sys.exit(1)
+
+try:
+    import requests
+except ImportError:
+    print("ERROR: Python module 'requests' not found. "
+          "Install with 'pip install requests'")
+    sys.exit(1)
+
+
+NOW = time()
+"""
+Current timestamp.
+
+"""
+
+
+def download_data_session(
+        file_path,
+        session_id,
+        stream_name,
+        client_key_id,
+        client_access_key,
+        stream_api_endpoint='https://stream.runelabs.io/v1/session'):
+    """
+    Download a data session to a file.
+
+    """
+    print(f"-> {file_path}")
+
+    response = requests.get(
+                   stream_api_endpoint,
+                   headers={
+                       'X-Rune-Client-Key-Id': client_key_id,
+                       'X-Rune-Client-Access-Key': client_access_key,
+                   },
+                   params={
+                       'session_id': session_id,
+                       'stream_name': stream_name,
+                   })
+
+    with open(file_path, 'wb') as f:
+
+        for chunk in response.iter_content(chunk_size=64*1024):
+            if chunk:
+                f.write(chunk)
+
+
+def list_device_sessions(
+        patient_id,
+        device_id,
+        start_time,
+        end_time,
+        client_key_id,
+        client_access_key,
+        graph_api_endpoint='https://graph.runelabs.io/graphql'):
+    """
+    List all data session for a patient, across all devices.
+
+    """
+    client = Client(
+        transport=RequestsHTTPTransport(
+            retries=3,
+            url=graph_api_endpoint,
+            use_json=True,
+            headers={
+                'Content-Type': "application/json",
+                'X-Rune-Client-Key-Id': client_key_id,
+                'X-Rune-Client-Access-Key': client_access_key,
+            }
+        ),
+        fetch_schema_from_transport=True,
+    )
+
+    response = client.execute(
+        gql('''
+            query ($patientId: ID!, $startTime: Float!, $endTime: Float!) {
+                dataSessions(
+                    patientId: $patientId,
+                    startTime: $startTime,
+                    endTime: $endTime
+                ) {
+                    id
+                    device {
+                        id
+                    }
+                    deviceSessionId
+                    endTime
+                    startTime
+                    streams {
+                        streamName
+                    }
+                }
+            }
+        '''),
+        variable_values={
+            "patientId": patient_id,
+            "startTime": start_time,
+            "endTime": end_time,
+        }
+    )
+
+    if device_id:
+
+        if ',' in device_id:
+            device_id = device_id.split(',')[-1]
+
+        if not device_id.startswith('device-'):
+            device_id = f"device-{device_id}"
+
+    for session in response['dataSessions']:
+        session_device_id = session['device']['id'].split(',')[-1]
+
+        if device_id and device_id != session_device_id:
+            continue
+
+        yield session
+
+
+def main(args):
+    """
+    Download patiennt data sessions.
+
+    """
+    if args.end_time - args.start_time > 90*86400:
+        print("ERROR: Time range cannot exceed 90 days")
+        sys.exit(2)
+
+    os.makedirs(args.target_path, exist_ok=True)
+
+    data_sessions = list_device_sessions(
+                        patient_id=args.patient_id,
+                        device_id=args.device_id,
+                        start_time=args.start_time,
+                        end_time=args.end_time,
+                        client_key_id=args.client_key_id,
+                        client_access_key=args.client_key_secret)
+
+    for data_session in data_sessions:
+        device_id = data_session['device']['id'].split(',')[-1]
+        session_id = data_session['id']
+        session_t = int(data_session['startTime'] * 1000)
+        filename = f"{session_t}_{session_id[len('dataset-'):]}"
+
+        session_dir = os.path.join(args.target_path, device_id, filename)
+
+        os.makedirs(session_dir, exist_ok=True)
+
+        for stream in data_session['streams']:
+            stream_name = stream['streamName']
+
+            download_data_session(
+                file_path=os.path.join(session_dir, stream_name),
+                session_id=session_id,
+                stream_name=stream_name,
+                client_key_id=args.client_key_id,
+                client_access_key=args.client_key_secret)
+
+
+def timestamp_arg(t_str):
+    """
+    Parse a timestamp.
+
+    """
+    if t_str.lower() == 'now':
+        return NOW
+    elif t_str.startswith('-') and t_str.endswith('d'):
+        return NOW - (int(t_str[1:-1]) * 86400)
+
+    try:
+        t = float(t_str)
+    except ValueError:
+        t = datetime.fromisoformat(t_str).timestamp()
+
+    return t
+
+
+#
+# Initialize
+#
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        'target_path',
+        metavar='TARGET_PATH',
+        help="Path to directory where data will be downloaded to."
+    )
+    parser.add_argument(
+        '--patient-id',
+        help="Rune ID of the target patient.",
+        required=True
+    )
+    parser.add_argument(
+        '--device-id',
+        help=(
+            "(optional) Only download datasets for the patient device with "
+            "the given Rune ID."
+        ),
+        default=None
+    )
+    parser.add_argument(
+        '--client-key-id',
+        help=(
+            "Client Key ID used to authenticate calls to the Rune API. Client"
+            " must belong to the target patient."
+        ),
+        required=True
+    )
+    parser.add_argument(
+        '--client-key-secret',
+        help=(
+            "Client Key secret used to authenticate calls to the Rune API. "
+            "Client must belong to the target patient."
+        ),
+        required=True
+    )
+    parser.add_argument(
+        '--start-time',
+        help=(
+            "Download sessions recorded after this time. May be a UNIX "
+            "integer timestamp, or in format 2020-01-01T12:34:56 (local "
+            "timezone). If '--end-time=now' is used, start time can be a "
+            "negative relative offset in days, e.g. '--start-time=-30d'"
+        ),
+        metavar="TIMESTAMP",
+        type=timestamp_arg,
+        required=True
+    )
+    parser.add_argument(
+        '--end-time',
+        help=(
+            "Download sessions recorded before this time. May be a UNIX "
+            "integer timestamp, or in format 2020-01-02T12:34:56 (local "
+            "timezone). Also accepts '--end-time=now' to use current time."
+        ),
+        metavar="TIMESTAMP",
+        type=timestamp_arg,
+        required=True
+    )
+    cliarg = parser.parse_args()
+
+    main(cliarg)

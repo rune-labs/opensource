@@ -16,3 +16,8 @@ Labs APIs inside Jupyter/IPython notebooks.
 
 This folder contains pseudocode describing how Rune Labs parses and ingests
 Medtronic RC+S datasets, such as how points are aligned in the time domain.
+
+
+## runecli/
+
+Command-line tools for use with the Rune platform.
