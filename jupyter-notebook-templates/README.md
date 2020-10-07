@@ -1,6 +1,6 @@
 # Jupyter Notebook Templates
 
-Here are some introductory materials to access and manipulate data using Rune's APIs.
+Here are some introductory materials to access and manipulate data using Rune's API.
 
 ## Rune's Stream API
 The **Stream API** allows you to pull time series data, including RC+S and Apple Watch signals. Full documentation for this API can be found [here](https://docs.runelabs.io/).  Our Python package `runeq` enables streamlined use of this API. Documentation for our Python SDK can be found [here](https://runeq.readthedocs.io/en/latest/).
@@ -9,7 +9,7 @@ The **Stream API** allows you to pull time series data, including RC+S and Apple
 First, set up your analysis environment in Python. Then, download/clone this repository and load up the .ipynb files in Jupyter Notebook. 
 
 * [00_python_installation_instructions](./00_python_installation_instructions.md) 
-details how to set up a Python analysis environment on a Mac. This notebook can be skipped if you already have the Anaconda distribution. However, you may want to install two additional packages: `runeq` for utilizing the Stream API and `gql` for using the Graph API.
+details how to set up a Python analysis environment on a Mac. This notebook can be skipped if you already have the Anaconda distribution. However, you should install `runeq` for utilizing the Stream API.
 
 * [01_download_neural_data](./01_download_neural_data.ipynb) 
 walks through a simple example of pulling raw time series and spectrograms and saving those as CSV files.
