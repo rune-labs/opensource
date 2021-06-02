@@ -34,7 +34,7 @@ xcode-select --install
 * Next, install **Homebrew**, a package manager for Mac, by entering the following in Terminal:
 
 ```
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
 * Install Python 3 using the Terminal command:

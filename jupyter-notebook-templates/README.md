@@ -29,6 +29,9 @@ filters data to remove epochs with non-continuous time stamps and to remove epoc
 * [06_inspect_rcs_data_quality](06_inspect_rcs_data_quality.ipynb) 
 uses session meta data to quantify and visualize data quality.
 
+* [07_explore_patient_events](07_explore_patient_events.ipynb)
+explores and pulls patient reported data from the Event and Span endpoints.
+
 ## Appendix of Functions
 Here is a list of major functions and where to find them in the notebooks.
 
@@ -45,10 +48,12 @@ Here is a list of major functions and where to find them in the notebooks.
 `get_accel` | [02_download_watch_data](02_download_watch_data.ipynb)
 `get_adaptive_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_dyskinesia` | [02_download_watch_data](02_download_watch_data.ipynb)
+`get_events` | [07_explore_patient_events](07_explore_patient_events.ipynb)
 `get_neural_time_series` | [01_download_neural_data](01_download_neural_data.ipynb)
 `get_rotation` | [02_download_watch_data](02_download_watch_data.ipynb)
 `get_sensing_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_session_events` | [06_inspect_rcs_data_quality](06_inspect_rcs_data_quality.ipynb)
+`get_spans` | [07_explore_patient_events](07_explore_patient_events.ipynb)
 `get_spectrogram` | [01_download_neural_data](01_download_neural_data.ipynb)
 `get_stimulation_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_tremor` | [02_download_watch_data](02_download_watch_data.ipynb)
