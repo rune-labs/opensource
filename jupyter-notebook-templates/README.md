@@ -32,6 +32,9 @@ uses session meta data to quantify and visualize data quality.
 * [07_explore_patient_events](07_explore_patient_events.ipynb)
 explores and pulls patient reported data from the Event and Span endpoints.
 
+* [08_explore_metadata_state](08_explore_metadata_state.ipynb)
+explores all of the metadata available from the State endpoint, with examples from Medtronic Summit RC+S and Percept.
+
 ## Appendix of Functions
 Here is a list of major functions and where to find them in the notebooks.
 
@@ -52,6 +55,7 @@ Here is a list of major functions and where to find them in the notebooks.
 `get_session_events` | [06_inspect_rcs_data_quality](06_inspect_rcs_data_quality.ipynb)
 `get_spans` | [07_explore_patient_events](07_explore_patient_events.ipynb)
 `get_spectrogram` | [01_download_neural_data](01_download_neural_data.ipynb)
+`get_states` | [08_explore_metadata_state](08_explore_metadata_state.ipynb)
 `get_stimulation_meta_data` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `get_watch_data` | [02_download_watch_data](02_download_watch_data.ipynb)
 `plot_epochs` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
