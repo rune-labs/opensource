@@ -99,3 +99,11 @@ jupyter notebook
 This should open up a new browser page, where you can navigate to your directory of interest and start a new notebook or load up an existing one.
 
 Jupyter Notebook also has a number of (unofficial) extensions for added functionality (https://github.com/ipython-contrib/jupyter_contrib_nbextensions). These extensions are optional, but some may be useful for analyses, such as Variable Inspector and ExecuteTime.
+
+## Initialize API credentials
+
+`runeq` uses YAML-formatted files to manage configuration settings.
+
+First initialize your API credentials. These credentials are analogous to having a username/password for accessing patient data. You can set up an access token for read access to all patients within your organization. See our [API](https://docs.runelabs.io/stream/#section/Overview/Key-Concepts) doc for instructions on how to set this up.
+
+Next, set up a .yaml file with your token or key ID and secret. This is the text file that will store your credentials. See our [`runeq` quickstart](https://runeq.readthedocs.io/en/latest/pages/quickstart.html#configuration) for how to set this up. See different [valid ways to create a config](https://runeq.readthedocs.io/en/latest/pages/config.html).
