@@ -3,7 +3,7 @@
 Here are some introductory materials to access and manipulate data using Rune's API.
 
 ## Rune's Stream API
-The **Stream API** allows you to pull time series data, including RC+S and Apple Watch signals. Full documentation for this API can be found [here](https://docs.runelabs.io/).  Our Python package `runeq` enables streamlined use of this API. Documentation for our Python SDK can be found [here](https://runeq.readthedocs.io/en/latest/).
+The **Stream API** allows you to pull time series data, including signals from DBS devices and the Apple Watch. Full documentation for this API can be found [here](https://docs.runelabs.io/).  Our Python package `runeq` enables streamlined use of this API. Documentation for our Python SDK can be found [here](https://runeq.readthedocs.io/en/latest/).
 
 ## Overview
 First, set up your analysis environment in Python. Then, download/clone this repository and load up the .ipynb files in Jupyter Notebook. 
@@ -35,6 +35,9 @@ explores and pulls patient reported data from the Event and Span endpoints.
 * [08_explore_metadata_state](08_explore_metadata_state.ipynb)
 explores all of the metadata available from the State endpoint, with examples from Medtronic Summit RC+S and Percept.
 
+* [101_clinical_score_upload](101_clinical_score_upload.ipynb)
+uploads clinical score data, using UPDRS as an example, to the Rune platform.
+
 ## Appendix of Functions
 Here is a list of major functions and where to find them in the notebooks.
 
@@ -45,6 +48,9 @@ Here is a list of major functions and where to find them in the notebooks.
 `check_duration` | [05_check_data_gaps](05_check_data_gaps.ipynb)
 `check_neural_data_availability` | [03_find_neural_and_watch_data](03_find_neural_and_watch_data.ipynb) 
 `check_sampling_rate` | [05_check_data_gaps](05_check_data_gaps.ipynb)
+`create_event` | [101_clinical_score_upload](101_clinical_score_upload.ipynb)
+`create_span` | [101_clinical_score_upload](101_clinical_score_upload.ipynb)
+`data_format_check` | [101_clinical_score_upload](101_clinical_score_upload.ipynb)
 `filter_by_epoch_duration` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `find_epochs` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
 `find_overlapping_epochs` | [04_advanced_neural_data_selection](04_advanced_neural_data_selection.ipynb)
