@@ -35,6 +35,9 @@ explores and pulls patient reported data from the Event and Span endpoints.
 * [08_explore_metadata_state](08_explore_metadata_state.ipynb)
 explores all of the metadata available from the State endpoint, with examples from Medtronic Summit RC+S and Percept.
 
+* [09_explore_healthkit_data](09_explore_healthkit_data.ipynb)
+explores and pulls data gathered from Apple's Health ecosystem.
+
 * [101_clinical_score_upload](101_clinical_score_upload.ipynb)
 uploads clinical score data, using UPDRS as an example, to the Rune platform.
 
