@@ -10,8 +10,3 @@ may have their own README.md files with more detail.
 
 Tutorials, templates, and examples of how to load and use data from the Rune
 Labs APIs inside Jupyter/IPython notebooks.
-
-
-## runecli/
-
-Command-line tools for use with the Rune platform.
