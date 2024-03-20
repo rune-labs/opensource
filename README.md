@@ -1,12 +1,3 @@
 # Rune Labs Open Source
 
-Collaborative repository for Rune Labs code, algorithms, and examples.
-
-This repo is organized into the folders described below. Individual folders
-may have their own README.md files with more detail.
-
-
-## jupyter-notebook-templates/
-
-Tutorials, templates, and examples of how to load and use data from the Rune
-Labs APIs inside Jupyter/IPython notebooks.
+Our collection of open source Jupyter notebooks, which serve as tutorials and examples for working with our Python API and SDK, have been moved to our SDK repo. Please find the most current examples [here](https://github.com/rune-labs/runeq-python/tree/main/examples).
